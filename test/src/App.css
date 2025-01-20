@@ -42,15 +42,24 @@ nav a:hover {
 .App {
   padding-top: 70px; /* 네비게이션 높이만큼 추가 */
 }
-/* App 전체 배경색 */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-image: url('./assets/aaaaa.png'); /* 배경 이미지 경로 */
-  background-size: cover; /* 배경 이미지가 화면을 채우도록 조정 */
-  background-position: center; /* 배경 이미지가 가운데 정렬되도록 설정 */
-  background-repeat: no-repeat; /* 배경 이미지를 반복하지 않음 */
-  background-attachment: fixed; /* 배경이 스크롤에 따라 움직이지 않음 */
-  color: #333; /* 텍스트 색상 */
+
+/* 전체 컨테이너 */
+.app-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh; /* 두 개의 페이지가 합쳐진 높이 */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 스크롤 숨김 */
+}
+
+/* 개별 페이지 */
+.page {
+  width: 100%;
+  height: 100vh; /* 화면 높이 하나 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

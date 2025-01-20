@@ -1,3 +1,15 @@
+/* 페이지 전체 배경 설정 */
+body {
+    margin: 0; /* 기본 마진 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    height: 100vh; /* 브라우저 화면 전체 높이 */
+    width: 100vw; /* 브라우저 화면 전체 너비 */
+    background-image: url('../assets/aaaaa.png'); /* 배경 이미지 경로 */
+    background-size: cover; /* 화면 전체를 채우도록 설정 */
+    background-position: center; /* 중앙에 정렬 */
+    background-repeat: no-repeat; /* 반복 제거 */
+    background-attachment: fixed; /* 배경 고정 */
+  }
 /* 빌딩과 캘린더를 감싸는 컨테이너 */
 .advent-calendar-container {
     position: fixed; /* 뷰포트 기준 고정 위치 */
@@ -8,8 +20,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   
     z-index: 1; /* 다른 요소 위에 표시 */
+    
+    
 }
 
 /* 빌딩 이미지 */

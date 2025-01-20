@@ -1,11 +1,15 @@
+import React from 'react';
 import './Home.css';
-function Home() {
+
+const Home = ({ onNext }) => {
   return (
-    <div className='home'>
-      <h1>Welcome to the Advent Calendar App!</h1>
-      <p>Click on "Advent Calendar" to see the calendar!</p>
+    <div className="home">
+      <h1>Welcome to Home</h1>
+      <button onClick={onNext} className="next-button">
+        Go to Advent Calendar
+      </button>
     </div>
   );
-}
+};
 
 export default Home;

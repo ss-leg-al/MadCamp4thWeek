@@ -1,0 +1,47 @@
+/* 빌딩과 캘린더를 감싸는 컨테이너 */
+.advent-calendar-container {
+    position: fixed; /* 뷰포트 기준 고정 위치 */
+    bottom: 1%; /* 페이지 하단에서 5% 위 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%); /* 정확한 중앙 정렬 */
+    width: 60%; /* 원하는 너비 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    z-index: 1; /* 다른 요소 위에 표시 */
+}
+
+/* 빌딩 이미지 */
+.building-image {
+    width: 100%; /* 컨테이너 너비에 맞춤 */
+    height: auto; /* 비율 유지 */
+    display: block;
+    z-index: 0; /* 캘린더 뒤에 배치 */
+}
+
+/* 캘린더(창문) 오버레이 */
+.calendar {
+    position: absolute; /* 빌딩 이미지 위에 절대 위치 */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6열 */
+    grid-template-rows: repeat(4, 1fr); /* 4행 */
+    gap: 2% 6%; /* 열 간격 4%, 행 간격 5% */
+    width: 50%; /* 빌딩 너비의 80% */
+    height: 44%; /* 빌딩 높이의 70% */
+    top: 26%; /* 빌딩 내부에서의 세로 위치 조정 */
+    left: 51%;
+    transform: translateX(-50%);
+    z-index: 1; /* 빌딩 이미지 위에 표시 */
+}
+
+/* 특정 창문(문) 위치 조정 */
+.calendar > *:nth-child(19) {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.calendar > *:nth-child(20) {
+    grid-column: 6;
+    grid-row: 4;
+}

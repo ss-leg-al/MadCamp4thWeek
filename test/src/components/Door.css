@@ -1,0 +1,121 @@
+/* 전체 문 컨테이너 */
+.door-container {
+    width:60%; /* 부모 요소의 너비에 맞춤 */
+    height: 60%; /* 부모 요소의 높이에 맞춤 */
+    position: relative;
+    perspective: 1500px; /* 3D 효과 */
+    cursor: pointer;
+    margin: 0; /* 여백 제거 */
+    padding: 0; /* 내부 여백 제거 */
+}
+
+/* 왼쪽 및 오른쪽 문 반쪽 */
+.door-left, .door-right {
+    width: 50%; /* 컨테이너의 절반 너비 사용 */
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 애니메이션 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2),
+                0px 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+    box-sizing: border-box; /* 테두리 포함 */
+    z-index: 2; /* 배경보다 위에 표시 */
+    margin: 0; /* 여백 제거 */
+}
+
+/* 나머지 스타일은 동일하게 유지 */
+.door-left {
+    left: 0;
+    transform-origin: left center; /* 왼쪽을 중심으로 회전 */
+    border-top-left-radius: 12px; /* 외부 상단 좌측 라운드 */
+    border-bottom-left-radius: 12px; /* 외부 하단 좌측 라운드 */
+}
+
+.door-right {
+    right: 0;
+    transform-origin: right center; /* 오른쪽을 중심으로 회전 */
+    border-top-right-radius: 12px; /* 외부 상단 우측 라운드 */
+    border-bottom-right-radius: 12px; /* 외부 하단 우측 라운드 */
+}
+
+/* 열림 상태: 문을 더 활짝 열기 위해 회전 각도 증가 */
+.door-container.open .door-left {
+    transform: rotateY(-120deg); /* 왼쪽 문을 왼쪽으로 120도 회전 */
+}
+
+.door-container.open .door-right {
+    transform: rotateY(120deg); /* 오른쪽 문을 오른쪽으로 120도 회전 */
+}
+
+/* 문 앞면 */
+.door-front {
+    width: 100%;
+    height: 100%;
+    background-color: #eef184; /* 밝은 색상 */
+    border: 3px solid #9e6573; /* 테두리 색상 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    position: relative;
+    box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.8), /* 내부 빛 반사 효과 */
+                0px 4px 6px rgba(0, 0, 0, 0.3); /* 외부 그림자 */
+    border-radius: 0; /* 내부 모서리 라운드 제거 */
+}
+
+/* 문 뒷면 */
+.door-back {
+    width: 100%;
+    height: 100%;
+    background-color: #c3df8cb8; /* 뒷면 색상 */
+    border: 1px solid #f0ffd2b8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg); /* 뒷면 숨김 */
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 */
+    border-radius: 0; /* 내부 모서리 라운드 제거 */
+}
+
+/* 문이 열렸을 때 보이는 배경 */
+.door-background {
+    width: 100%;
+    height: 100%;
+    background-color: #eef184;
+    border: 3px solid #eef184;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* 문보다 아래에 표시 */
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1),
+                0px 2px 8px rgba(0, 0, 0, 0.2); /* 그림자 */
+    border-radius: 12px;
+}
+
+/* 문이 열렸을 때 배경 표시 */
+.door-container.open .door-background {
+    opacity: 1;
+}
+
+/* 보상 아이콘 스타일 */
+.reward {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 문 사이의 간격 제거 */
+.calendar > * {
+    margin: 0; /* 문 요소의 여백 제거 */
+    padding: 0; /* 내부 여백 제거 */
+    box-sizing: border-box; /* 테두리를 포함한 크기 계산 */
+}

@@ -1,0 +1,41 @@
+/* 모달 창 배경 */
+.modal {
+    position: fixed;
+    top: 50%; /* 페이지 중앙 */
+    left: 50%; /* 페이지 중앙 */
+    transform: translate(-50%, -50%); /* 정확한 중앙으로 이동 */
+    width: 100vw; /* 뷰포트 너비 */
+    height: 100vh; /* 뷰포트 높이 */
+    background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은 배경 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999; /* z-index를 충분히 높게 설정 */
+}
+
+/* 모달 창 내용 */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 80%;
+    z-index: 100000; /* 내용도 높은 z-index로 설정 */
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}

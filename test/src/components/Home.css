@@ -1,0 +1,10 @@
+/* Home 배경 */
+.home-page {
+  background-image: url('../assets/ccccc.png'); /* Home 배경 이미지 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh; /* 화면 전체 높이 */
+  width: 100%; /* 화면 전체 너비 */
+}

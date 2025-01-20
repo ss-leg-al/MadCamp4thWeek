@@ -1,38 +1,38 @@
 /* 모달 창 배경 */
 .modal {
     position: fixed;
-    top: 50%; /* 페이지 중앙 */
-    left: 50%; /* 페이지 중앙 */
-    transform: translate(-50%, -50%); /* 정확한 중앙으로 이동 */
-    width: 120vw; /* 뷰포트 너비 */
-    height: 100vh; /* 뷰포트 높이 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은 배경 */
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99999; /* z-index를 충분히 높게 설정 */
-}
-
-/* 모달 창 내용 */
-.modal-content {
+    z-index: 99999;
+  }
+  
+  /* 모달 창 내용 */
+  .modal-content {
     background: white;
-    padding: 30px; /* 내부 여백 */
+    padding: 30px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     max-width: 600px;
     width: 90%;
-    height: 60%; /* 고정된 높이 */
-    position: relative; /* 버튼의 절대 위치를 위한 기준 */
+    height: 60%;
+    position: relative;
     z-index: 100000;
-}
-
-/* 버튼 스타일 */
-.modal-content button {
-    position: absolute; /* 버튼을 절대 위치로 설정 */
-    bottom: 20px; /* 모달 하단에서 20px 위 */
-    left: 50%; /* 가로 중앙 정렬 */
-    transform: translateX(-50%); /* 정확한 가로 중앙으로 이동 */
+  }
+  
+  /* 버튼 스타일 */
+  .modal-content button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 10px 20px;
     background-color: #4caf50;
     color: white;
@@ -40,8 +40,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-}
-
-.modal-content button:hover {
+  }
+  
+  .modal-content button:hover {
     background-color: #45a049;
-}
+  }

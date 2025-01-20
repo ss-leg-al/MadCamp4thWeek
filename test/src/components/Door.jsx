@@ -24,7 +24,7 @@ const Door = ({ number }) => {
         {/* 왼쪽 문 반쪽 */}
         <div className="door-left">
           <div className="door-front">
-            <span className="door-number">{number}</span>
+        
           </div>
           <div className="door-back"></div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Door from './Door';
 import './AdventCalendar.css';
-import buildingImage from '../assets/hotel.png';
+import buildingImage from '../assets/hotel2.png';
 
 const AdventCalendar = () => {
   const [buildingDimensions, setBuildingDimensions] = useState({

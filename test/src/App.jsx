@@ -8,13 +8,16 @@ import Lobby from './components/Lobby'; // Lobby 컴포넌트 추가
 function App() {
   const [currentPage, setCurrentPage] = useState(0); // 0: Home, 1: Train, 2: Lobby, 3: AdventCalendar
   const [isScrolling, setIsScrolling] = useState(false); // 스크롤 잠금 상태
+  const [refreshTrigger, setRefreshTrigger] = useState(false); // AdventCalendar 새로고침 트리거
+
   const handleLoginSuccess = () => {
+    setRefreshTrigger(!refreshTrigger); // AdventCalendar 데이터 새로고침
     setCurrentPage((prevPage) => prevPage + 1); // 로그인 성공 시 다음 페이지로 이동
   };
+
   const handleScroll = (event) => {
     if (isScrolling) return; // 애니메이션이 진행 중이면 처리하지 않음
     setIsScrolling(true);
-    
 
     if (event.deltaY > 0 && currentPage < 3) {
       // 아래로 스크롤 시 다음 페이지로 이동
@@ -45,13 +48,13 @@ function App() {
         className={`page ${currentPage === 2 ? 'visible' : 'hidden'}`}
         style={{ zIndex: currentPage === 2 ? 10 : 0 }}
       >
-        <Lobby onLoginSuccess={handleLoginSuccess}/>
+        <Lobby onLoginSuccess={handleLoginSuccess} />
       </div>
       <div
         className={`page ${currentPage === 3 ? 'visible' : 'hidden'}`}
         style={{ zIndex: currentPage === 3 ? 10 : 0 }}
       >
-        <AdventCalendar />
+        <AdventCalendar refreshTrigger={refreshTrigger} />
       </div>
     </div>
   );

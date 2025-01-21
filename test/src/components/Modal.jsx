@@ -26,7 +26,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
           >
             {children}
-            <button onClick={onClose}>Close</button>
+            <button onClick={onClose} className="close-button">Close</button>
           </motion.div>
         </motion.div>
       )}

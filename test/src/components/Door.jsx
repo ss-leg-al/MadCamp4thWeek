@@ -6,7 +6,7 @@ import rightDoor from '../assets/rightdoor.png';
 import brightLeftDoor from '../assets/brightleftdoor.png';
 import brightRightDoor from '../assets/brightrightdoor.png';
 
-const Door = ({ number }) => {
+const Door = ({ number, message }) => {
   const [isOpen, setIsOpen] = useState(false); // 문 열림 상태
   const [isChanged, setIsChanged] = useState(false); // 이미지 변경 여부
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +38,7 @@ const Door = ({ number }) => {
           <div
             className="door-front"
             style={{
-              backgroundImage:isChanged ? `url(${brightLeftDoor})` : `url(${leftDoor})`,
+              backgroundImage: isChanged ? `url(${brightLeftDoor})` : `url(${leftDoor})`,
             }}
           ></div>
           <div className="door-back"></div>
@@ -65,8 +65,8 @@ const Door = ({ number }) => {
 
       {/* 보상 모달 */}
       <Modal isOpen={showModal} onClose={closeModal}>
-        <h2>축하합니다!</h2>
-        <p>문 {number}을(를) 열었습니다!</p>
+        <h2>Message from {message.sender}</h2>
+        <p>{message.content}</p>
       </Modal>
     </div>
   );

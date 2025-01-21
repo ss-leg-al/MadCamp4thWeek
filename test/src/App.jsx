@@ -10,6 +10,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0); // 0: Home, 1: Train, 2: Zoom, 3: Lobby, 4: AdventCalendar
   const [isScrolling, setIsScrolling] = useState(false); // 스크롤 잠금 상태
   const [refreshTrigger, setRefreshTrigger] = useState(false); // AdventCalendar 새로고침 트리거
+  const [isTransitioning, setIsTransitioning] = useState(false); // 암전 효과 상태
+
+  const fadeDuration = 1000; // 1초
 
   const handleLoginSuccess = () => {
     setRefreshTrigger(!refreshTrigger); // AdventCalendar 데이터 새로고침
@@ -17,7 +20,7 @@ function App() {
   };
 
   const handleScroll = (event) => {
-    if (isScrolling) return; // 애니메이션이 진행 중이면 처리하지 않음
+    if (isScrolling || isTransitioning) return; // 애니메이션이 진행 중이면 처리하지 않음
     setIsScrolling(true);
 
     if (event.deltaY > 0 && currentPage < 4) {
@@ -29,6 +32,17 @@ function App() {
     }
 
     setTimeout(() => setIsScrolling(false), 1000); // 애니메이션 시간과 일치
+  };
+
+  const handleZoomToLobby = () => {
+    setIsTransitioning(true); // 암전 시작
+
+    setTimeout(() => {
+      setCurrentPage(3); // 페이지 변경
+      setTimeout(() => {
+        setIsTransitioning(false); // 암전 해제
+      }, fadeDuration); // 암전 해제 타이밍
+    }, fadeDuration); // 암전 완료 후 페이지 변경
   };
 
   return (
@@ -49,7 +63,7 @@ function App() {
         className={`page ${currentPage === 2 ? 'visible' : 'hidden'}`}
         style={{ zIndex: currentPage === 2 ? 10 : 0 }}
       >
-        <Zoom onClickNext={() => setCurrentPage(3)} />
+        <Zoom onClickNext={handleZoomToLobby} />
       </div>
       <div
         className={`page ${currentPage === 3 ? 'visible' : 'hidden'}`}
@@ -63,6 +77,8 @@ function App() {
       >
         <AdventCalendar refreshTrigger={refreshTrigger} />
       </div>
+      {/* 암전 오버레이 */}
+      <div className={`transition-overlay ${isTransitioning ? 'visible' : ''}`}></div>
     </div>
   );
 }

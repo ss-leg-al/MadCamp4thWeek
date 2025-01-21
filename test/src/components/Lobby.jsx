@@ -39,7 +39,7 @@ const Lobby = ({ onLoginSuccess }) => { // 부모 컴포넌트에서 onLoginSucc
   return (
     <div className="lobby">
       <div className="login-container">
-        <h1>Login to Lobby</h1>
+        <h1>a</h1>
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username">Username</label>

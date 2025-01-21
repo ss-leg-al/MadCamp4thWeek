@@ -12,7 +12,7 @@ const Lobby = ({ onLoginSuccess }) => { // 부모 컴포넌트에서 onLoginSucc
 
     try {
       // 백엔드 API 호출
-      const response = await axios.post('http://localhost:3000/api/users/login', {
+      const response = await axios.post('http://143.248.194.28:3000/api/users/login', {
         name: username, // 백엔드에서 요구하는 필드 이름에 맞춤
         password,
       });

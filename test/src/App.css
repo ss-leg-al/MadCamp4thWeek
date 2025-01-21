@@ -3,6 +3,7 @@
   width: 100%;
   height: 100vh; /* 화면 전체 높이 */
   overflow: hidden; /* 넘치는 내용 숨김 */
+  
 }
 
 .page {

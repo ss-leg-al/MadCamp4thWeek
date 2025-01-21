@@ -4,7 +4,7 @@ body {
     padding: 0; /* 기본 패딩 제거 */
     height: 100vh; /* 브라우저 화면 전체 높이 */
     width: 100vw; /* 브라우저 화면 전체 너비 */
-    background-image: url('../assets/aaaaa.png'); /* 배경 이미지 경로 */
+    background-image: url('../assets/realback.png'); /* 배경 이미지 경로 */
     background-size: cover; /* 화면 전체를 채우도록 설정 */
     background-position: center; /* 중앙에 정렬 */
     background-repeat: no-repeat; /* 반복 제거 */
@@ -13,7 +13,7 @@ body {
 /* 빌딩과 캘린더를 감싸는 컨테이너 */
 .advent-calendar-container {
     position: fixed; /* 뷰포트 기준 고정 위치 */
-    bottom: 1%; /* 페이지 하단에서 5% 위 */
+    bottom: 0%; /* 페이지 하단에서 5% 위 */
     left: 50%; /* 가로 중앙 정렬 */
     transform: translateX(-50%); /* 정확한 중앙 정렬 */
     width: 60%; /* 원하는 너비 설정 */
@@ -58,3 +58,36 @@ body {
     grid-column: 6;
     grid-row: 4;
 }
+/* 페이지 전체 눈송이 컨테이너 */
+.snow-container {
+    position: fixed; /* 페이지 전체를 덮음 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 클릭 차단 */
+    z-index: -1; /* 다른 요소 위에 배치 */
+    overflow: hidden;
+  }
+  
+  /* 개별 눈송이 */
+  .snowflake {
+    position: absolute;
+    top: -10px; /* 화면 위에서 시작 */
+    color: white; /* 눈송이 색상 */
+    font-size: 1.5rem; /* 기본 크기 */
+    animation: fall linear infinite; /* 아래로 떨어지는 애니메이션 */
+    opacity: 0.8;
+  }
+  
+  /* 눈송이 떨어지는 애니메이션 */
+  @keyframes fall {
+    0% {
+      transform: translateY(-10px) rotate(0deg); /* 시작 위치 */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg); /* 화면 아래까지 */
+      opacity: 0.5;
+    }
+  }

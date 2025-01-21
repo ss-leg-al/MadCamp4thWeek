@@ -1,6 +1,9 @@
-.train {
-    width: 100%;
-    height: 100%;
+/* 전체 컨테이너 설정 */
+.train-container {
+    position: relative;
+    width: 100%; /* 페이지 너비 */
+    height: 100vh; /* 페이지 높이 */
+    overflow: hidden; /* 컨테이너를 벗어난 요소 숨김 */
     background-image: url('../assets/realtrain.png'); /* Train 배경 이미지 경로 */
     background-size: cover; /* 배경 이미지를 화면에 맞게 조정 */
     background-position: center; /* 배경을 중앙 정렬 */
@@ -8,6 +11,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 2rem;
+  }
+  
+  /* 기차 기본 스타일 */
+  .train {
+    position: absolute;
+    bottom: 53%; /* 기차가 화면 아래쪽에 위치 */
+    left: -20%; /* 기본 위치: 화면 왼쪽 밖 */
+    width: 400px; /* 기차 크기 (필요 시 조정) */
+  }
+  
+  /* 기차 애니메이션 */
+  .train.animate {
+    animation: moveTrain 7s linear forwards; /* 애니메이션 적용 */
+  }
+  
+  /* 기차 애니메이션 정의 */
+  @keyframes moveTrain {
+    0% {
+      left: -20%; /* 시작 위치: 화면 왼쪽 밖 */
+    }
+    100% {
+      left: 120%; /* 끝 위치: 화면 오른쪽 밖 */
+    }
   }

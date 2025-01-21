@@ -42,7 +42,7 @@ function App() {
         className={`page ${currentPage === 1 ? 'visible' : 'hidden'}`}
         style={{ zIndex: currentPage === 1 ? 10 : 0 }}
       >
-        <Train />
+        <Train isActive={currentPage === 1} />
       </div>
       <div
         className={`page ${currentPage === 2 ? 'visible' : 'hidden'}`}

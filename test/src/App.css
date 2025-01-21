@@ -1,65 +1,28 @@
-/* 상단 네비게이션 바 */
-nav {
-  position: fixed; /* 상단에 고정 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333; /* 어두운 배경 */
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 */
-  z-index: 1000;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 2rem; /* 링크 간격 */
-}
-
-nav li {
-  margin: 0;
-  padding: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #4caf50; /* 호버 시 강조 */
-}
-
-/* 콘텐츠가 네비게이션 아래로 내려가도록 패딩 추가 */
-.App {
-  padding-top: 70px; /* 네비게이션 높이만큼 추가 */
-}
-
-/* 전체 컨테이너 */
 .app-container {
-  position: fixed;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 화면 전체 높이 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+}
+
+.page {
+  position: fixed; /* 화면에 고정 */
   top: 0;
   left: 0;
   width: 100%;
-  height: 400vh; /* 두 개의 페이지가 합쳐진 높이 */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* 스크롤 숨김 */
-}
-
-/* 개별 페이지 */
-.page {
-  width: 100%;
-  height: 100vh; /* 화면 높이 하나 */
+  height: 100vh; /* 화면 전체를 채움 */
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* 전환 효과 */
+}
+
+.page.hidden {
+  opacity: 0; /* 숨겨진 페이지는 투명하게 */
+  transform: translateY(100%); /* 화면 아래로 이동 */
+}
+
+.page.visible {
+  opacity: 1; /* 보이는 페이지는 불투명하게 */
+  transform: translateY(0); /* 화면 중앙에 위치 */
 }

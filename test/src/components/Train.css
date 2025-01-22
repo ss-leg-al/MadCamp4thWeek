@@ -11,27 +11,57 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  /* 기차 기본 스타일 */
-  .train {
+}
+
+/* 기차 기본 스타일 */
+.train {
     position: absolute;
     bottom: 53%; /* 기차가 화면 아래쪽에 위치 */
     left: -20%; /* 기본 위치: 화면 왼쪽 밖 */
     width: 400px; /* 기차 크기 (필요 시 조정) */
-  }
-  
-  /* 기차 애니메이션 */
-  .train.animate {
-    animation: moveTrain 7s linear forwards; /* 애니메이션 적용 */
-  }
-  
-  /* 기차 애니메이션 정의 */
-  @keyframes moveTrain {
+}
+
+/* 기차 애니메이션 */
+.train.animate {
+    animation: moveTrain 9s linear forwards; /* 애니메이션 적용 */
+}
+
+/* 기차 애니메이션 정의 */
+@keyframes moveTrain {
     0% {
-      left: -20%; /* 시작 위치: 화면 왼쪽 밖 */
+        left: -20%; /* 시작 위치: 화면 왼쪽 밖 */
     }
     100% {
-      left: 120%; /* 끝 위치: 화면 오른쪽 밖 */
+        left: 120%; /* 끝 위치: 화면 오른쪽 밖 */
     }
-  }
+}
+.snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10; /* 화면 맨 앞에 표시 */
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -50px; /* 눈송이가 더 위에서 시작 */
+    color: white;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+/* 눈송이가 랜덤한 위치와 크기, 속도로 애니메이션 */
+@keyframes fall {
+    0% {
+        transform: translateY(-50px); /* 눈송이 시작 위치를 더 위로 설정 */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.5;
+    }
+}

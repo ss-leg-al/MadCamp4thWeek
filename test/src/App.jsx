@@ -13,6 +13,7 @@ function App() {
   const [isTransitioning, setIsTransitioning] = useState(false); // 암전 효과 상태
 
   const fadeDuration = 1000; // 1초
+  const deltaThreshold = 30; // 스크롤 임계값
 
   const handleLoginSuccess = () => {
     setRefreshTrigger(!refreshTrigger); // AdventCalendar 데이터 새로고침
@@ -20,7 +21,17 @@ function App() {
   };
 
   const handleScroll = (event) => {
-    if (isScrolling || isTransitioning) return; // 애니메이션이 진행 중이면 처리하지 않음
+    if (isScrolling || isTransitioning) {
+      event.preventDefault(); // 이벤트 중복 방지
+      return;
+    }
+
+    // deltaY 임계값 체크
+    if (Math.abs(event.deltaY) < deltaThreshold) return;
+
+    // Zoom 페이지(2번)에서는 스크롤 이벤트를 차단
+    if (currentPage === 2) return;
+
     setIsScrolling(true);
 
     if (event.deltaY > 0 && currentPage < 4) {
@@ -34,6 +45,7 @@ function App() {
     setTimeout(() => setIsScrolling(false), 1000); // 애니메이션 시간과 일치
   };
 
+  // Zoom 페이지에서 Lobby 페이지로 넘어가는 핸들러
   const handleZoomToLobby = () => {
     setIsTransitioning(true); // 암전 시작
 

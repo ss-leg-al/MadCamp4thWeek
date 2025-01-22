@@ -16,6 +16,7 @@
     "framer-motion": "^11.18.1",
     "gsap": "^3.12.7",
     "highlight.js": "^11.11.1",
+    "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-pageflip": "^2.0.3",

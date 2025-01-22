@@ -1,69 +1,73 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Axios 가져오기
+import axios from 'axios';
 import './Lobby.css';
 
-const Lobby = ({ onLoginSuccess }) => { // 부모 컴포넌트에서 onLoginSuccess를 받음
-  const [username, setUsername] = useState(''); // 사용자 이름 상태
-  const [password, setPassword] = useState(''); // 비밀번호 상태
-  const [error, setError] = useState(''); // 오류 메시지 상태
+const Lobby = ({ onLoginSuccess }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showLogin, setShowLogin] = useState(false); // 대사와 로그인 폼 표시 상태
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // 백엔드 API 호출
       const response = await axios.post('http://143.248.194.28:3000/api/users/login', {
-        name: username, // 백엔드에서 요구하는 필드 이름에 맞춤
+        name: username,
         password,
       });
 
-      // 로그인 성공 처리
-      const { user } = response.data; // 응답 데이터에서 사용자 정보 추출
-      sessionStorage.setItem('username', user.name); // 세션 스토리지에 사용자 이름 저장
-      sessionStorage.setItem('messages', JSON.stringify(user.messages)); // 세션 스토리지에 메시지 저장
+      const { user } = response.data;
+      sessionStorage.setItem('username', user.name);
+      sessionStorage.setItem('messages', JSON.stringify(user.messages));
 
-      onLoginSuccess(); // 부모 컴포넌트에 성공 알림
+      onLoginSuccess();
       alert('Login successful!');
-      console.log('User Info:', user); // 응답 데이터 출력
-      setError(''); // 오류 메시지 초기화
+      setError('');
     } catch (err) {
-      // 오류 처리
       if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message); // 서버에서 보낸 에러 메시지 출력
+        setError(err.response.data.message);
       } else {
-        setError('An unknown error occurred.'); // 서버 응답 없음 또는 기타 에러
+        setError('An unknown error occurred.');
       }
     }
   };
 
   return (
-    <div className="lobby">
+    <div className="lobby" onClick={() => setShowLogin(true)}>
       <div className="login-container">
-        <h1>a</h1>
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-            />
+        {showLogin ? (
+          <form onSubmit={handleLogin}>
+            <div className="form-group1">
+              <label htmlFor="username">성함</label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="성함을 입력해주세요"
+              />
+            </div>
+            <div className="form-group2">
+              <label htmlFor="password">예약번호</label>
+              <input
+                type="text"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="예약번호를 입력해주세요"
+              />
+            </div>
+            {error && <p className="error">{error}</p>}
+            <button type="submit" className="login-button">
+              체크인 하기
+            </button>
+          </form>
+        ) : (
+          <div className="dialogue">
+            <p>안녕하세요, 저는 조성제입니다.<br />체크인 도와드리겠습니다.</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="text"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-          </div>
-          {error && <p className="error">{error}</p>} {/* 오류 메시지 출력 */}
-          <button type="submit" className="login-button">Login</button>
-        </form>
+        )}
       </div>
     </div>
   );

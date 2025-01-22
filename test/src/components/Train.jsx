@@ -4,8 +4,22 @@ import trainImage from '../assets/train.png';
 
 const Train = ({ isActive }) => {
   const [animate, setAnimate] = useState(false);
+  const [snowflakes, setSnowflakes] = useState([]);
 
   useEffect(() => {
+    // 눈송이 초기 생성
+    const generateSnowflakes = () => {
+      const flakes = Array.from({ length: 50 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${Math.random() * 5 + 5}s`,
+        animationDelay: `${Math.random() * 5}s`, // 랜덤 딜레이 설정
+        fontSize: `${Math.random() * 1.5 + 1}rem`,
+      }));
+      setSnowflakes(flakes);
+    };
+
+    generateSnowflakes();
+
     if (isActive) {
       setAnimate(false); // 애니메이션 초기화
       const timeout = setTimeout(() => setAnimate(true), 50); // 딜레이 후 애니메이션 시작
@@ -15,10 +29,26 @@ const Train = ({ isActive }) => {
 
   return (
     <div className="train-container">
+      <div className="snow-container">
+        {snowflakes.map((flake, index) => (
+          <span
+            key={index}
+            className="snowflake"
+            style={{
+              left: flake.left,
+              animationDuration: flake.animationDuration,
+              animationDelay: flake.animationDelay,
+              fontSize: flake.fontSize,
+            }}
+          >
+            ❄
+          </span>
+        ))}
+      </div>
       <img
         src={trainImage}
         alt="Train"
-        className={`train ${animate ? 'animate' : ''}`} // 애니메이션 클래스 동적 추가
+        className={`train ${animate ? 'animate' : ''}`}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 /* 모달 창 배경 */
 .modal {
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 120vw;
@@ -13,35 +13,58 @@
     z-index: 99999;
   }
   
-  /* 모달 창 내용 */
   .modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    width: 90%;
-    height: 60%;
-    position: relative;
-    z-index: 100000;
+    background: #f9f0eb;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding: 32px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
   }
   
-  /* 버튼 스타일 */
-  .modal-content button {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #4caf50;
+  .modal-content h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .modal-content p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .modal-text-content {
+    max-height: 600px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  
+  .modal-text-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .close-button {
+    background-color: #333;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding: 10px 20px;
     cursor: pointer;
+    margin-top: 10px;
     font-size: 1rem;
   }
   
-  .modal-content button:hover {
-    background-color: #45a049;
+  .close-button:hover {
+    background-color: #603c46;
   }
+  

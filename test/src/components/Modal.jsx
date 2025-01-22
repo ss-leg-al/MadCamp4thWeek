@@ -19,14 +19,13 @@ const Modal = ({ isOpen, onClose, children }) => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{
-              duration: 0.6,
-              ease: [0.6, -0.05, 0.01, 0.99], // 부드러운 애니메이션
-            }}
+            transition={{ duration: 0.6 }}
             onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
           >
-            {children}
-            <button onClick={onClose} className="close-button">Close</button>
+            <div className="modal-text-content">{children}</div>
+            <button onClick={onClose} className="close-button">
+              닫기
+            </button>
           </motion.div>
         </motion.div>
       )}

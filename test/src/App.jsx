@@ -39,6 +39,7 @@ function App() {
     // Zoom 페이지(2번)에서는 스크롤 이벤트를 차단
     if (currentPage === 2) return;
     if (currentPage === 3) return;
+    if (currentPage === 4) return;
 
     setIsScrolling(true);
 

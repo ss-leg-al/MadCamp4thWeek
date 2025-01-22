@@ -35,9 +35,10 @@
   
   /* 대사 스타일 */
   .dialogue {
-    font-size: 2.5rem; /* 대사 크기 증가 */
-    color: #333;
-    text-align: center;
+    text-align: center; /* 가운데 정렬 */
+    font-size: 2.5rem; /* 글자 크기 */
+    color: #333; /* 글자 색상 */
+    font-weight: bold; /* 강조 */
     margin-top: 100px;
   }
 
@@ -78,10 +79,10 @@
   
   /* 로그인 버튼 */
   .login-button {
-    width: 112%; /* 버튼 너비를 입력 칸과 동일하게 */
+    width: 30%; /* 버튼 너비를 입력 칸과 동일하게 */
     max-width: 400px; /* 버튼 너비 증가 */
     padding: 1rem; /* 높이 증가 */
-    background-color: #c46fd9;
+    background-color: #a6a6a6;
     color: white;
     border: none;
     border-radius: 6px; /* 모서리 더 둥글게 */
@@ -94,5 +95,32 @@
   
   /* 로그인 버튼 호버 효과 */
   .login-button:hover {
-    background-color: #d269f5;
+    background-color: #603c46;
+  }
+  .login-dialogue {
+    text-align: center; /* 가운데 정렬 */
+    font-size: 1.5rem; /* 글자 크기 */
+    color: #333; /* 글자 색상 */
+    margin-top: 70px;
+    font-weight: bold; /* 강조 */
+  }
+  @font-face {
+    font-family: 'CustomFont'; /* 글꼴 이름 */
+    src: url('../assets/mainfontlight.ttf') format('truetype'); /* 글꼴 경로 및 형식 */
+  }
+  
+  .dialogue, .login-dialogue, .login-button{
+    font-family: 'CustomFont', sans-serif; /* 새 글꼴 적용 */
+  }
+  /* Placeholder 텍스트 스타일 */
+input::placeholder {
+    font-family: 'CustomFont', sans-serif; /* 원하는 글씨체 */
+    font-size: 1.2rem; /* 글자 크기 */
+    color: #aaa; /* 글자 색상 */
+    font-style: italic; /* 기울임꼴 (선택 사항) */
+  }
+  input {
+    font-family: 'CustomFont', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
   }

@@ -16,8 +16,15 @@ function App() {
   const deltaThreshold = 30; // 스크롤 임계값
 
   const handleLoginSuccess = () => {
-    setRefreshTrigger(!refreshTrigger); // AdventCalendar 데이터 새로고침
-    setCurrentPage((prevPage) => prevPage + 1); // 로그인 성공 시 다음 페이지로 이동
+    setIsTransitioning(true); // 암전 시작
+
+    setTimeout(() => {
+      setRefreshTrigger(!refreshTrigger); // AdventCalendar 데이터 새로고침
+      setCurrentPage(4); // 페이지 변경
+      setTimeout(() => {
+        setIsTransitioning(false); // 암전 해제
+      }, fadeDuration); // 암전 해제 타이밍
+    }, fadeDuration); // 암전 완료 후 페이지 변경
   };
 
   const handleScroll = (event) => {
@@ -31,6 +38,7 @@ function App() {
 
     // Zoom 페이지(2번)에서는 스크롤 이벤트를 차단
     if (currentPage === 2) return;
+    if (currentPage === 3) return;
 
     setIsScrolling(true);
 

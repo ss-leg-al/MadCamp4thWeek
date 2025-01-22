@@ -6,7 +6,8 @@ const Lobby = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [showLogin, setShowLogin] = useState(false); // 대사와 로그인 폼 표시 상태
+  const [showLogin, setShowLogin] = useState(false);
+  const [dialogue, setDialogue] = useState('안녕하세요, 저는 조성제입니다. 체크인 도와드리겠습니다.');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,9 +22,11 @@ const Lobby = ({ onLoginSuccess }) => {
       sessionStorage.setItem('username', user.name);
       sessionStorage.setItem('messages', JSON.stringify(user.messages));
 
-      onLoginSuccess();
-      alert('Login successful!');
-      setError('');
+      setShowLogin(false); // 로그인 폼 숨김
+      setDialogue('편안한 숙박 되세요, 필요하신 사항은 언제든 말씀해 주세요.'); // 대사 변경
+      setTimeout(() => {
+        onLoginSuccess(); // 다음 페이지로 전환
+      }, 1000); // 3초 뒤에 다음 페이지로 이동
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
@@ -36,10 +39,16 @@ const Lobby = ({ onLoginSuccess }) => {
   return (
     <div className="lobby" onClick={() => setShowLogin(true)}>
       <div className="login-container">
-        {showLogin ? (
+        {!showLogin ? (
+          <div className="dialogue">
+            <p>{dialogue}</p>
+          </div>
+        ) : (
           <form onSubmit={handleLogin}>
+            <div className="login-dialogue">
+              <p>고객님 성함과 예약 코드를 알려 주시겠습니까?</p>
+            </div>
             <div className="form-group1">
-              <label htmlFor="username">성함</label>
               <input
                 type="text"
                 id="username"
@@ -49,24 +58,19 @@ const Lobby = ({ onLoginSuccess }) => {
               />
             </div>
             <div className="form-group2">
-              <label htmlFor="password">예약번호</label>
               <input
                 type="text"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="예약번호를 입력해주세요"
+                placeholder="예약코드를 입력해주세요"
               />
             </div>
             {error && <p className="error">{error}</p>}
             <button type="submit" className="login-button">
-              체크인 하기
+              Check-in
             </button>
           </form>
-        ) : (
-          <div className="dialogue">
-            <p>안녕하세요, 저는 조성제입니다.<br />체크인 도와드리겠습니다.</p>
-          </div>
         )}
       </div>
     </div>

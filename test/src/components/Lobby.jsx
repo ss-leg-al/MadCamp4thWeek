@@ -9,6 +9,8 @@ const Lobby = ({ onLoginSuccess }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [dialogue, setDialogue] = useState(`안녕하세요, 저는 조성제입니다.
     체크인 도와드리겠습니다.`);
+  const [dialogueClass, setDialogueClass] = useState('dialogue'); // 대사 애니메이션 클래스
+  const [loginContainerClass, setLoginContainerClass] = useState('login-container'); // 로그인 컨테이너 애니메이션 클래스
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,12 +25,20 @@ const Lobby = ({ onLoginSuccess }) => {
       sessionStorage.setItem('username', user.name);
       sessionStorage.setItem('messages', JSON.stringify(user.messages));
 
-      setShowLogin(false); // 로그인 폼 숨김
-      setDialogue(`편안한 숙박 되세요, 
-        필요하신 사항은 언제든 말씀해 주세요.`);
+      setLoginContainerClass('login-container fade-out');
+      setTimeout(() => {
+        setShowLogin(false); // 로그인 폼 숨김
+        setDialogueClass('dialogue fade-out');
+        setTimeout(() => {
+          setDialogue(`편안한 숙박 되세요, 
+            필요하신 사항은 언제든 말씀해 주세요.`);
+          setDialogueClass('dialogue fade-in');
+        }, 500);
+      }, 500);
+
       setTimeout(() => {
         onLoginSuccess(); // 다음 페이지로 전환
-      }, 1000); // 3초 뒤에 다음 페이지로 이동
+      }, 2000);
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
@@ -38,16 +48,22 @@ const Lobby = ({ onLoginSuccess }) => {
     }
   };
 
+  const handleShowLogin = () => {
+    setDialogueClass('dialogue fade-out');
+    setTimeout(() => {
+      setShowLogin(true);
+      setLoginContainerClass('login-container fade-in');
+    }, 500);
+  };
+
   return (
-    <div className="lobby" onClick={() => setShowLogin(true)}>
-      <div className="login-container">
+    <div className="lobby" onClick={handleShowLogin}>
+      <div className={loginContainerClass}>
         {!showLogin ? (
-                    <div className="dialogue">
-                        <p><div className="dialogue">
+          <div className={dialogueClass}>
             {dialogue.split('\n').map((line, index) => (
-                <p key={index}>{line}</p>
+              <p key={index}>{line}</p>
             ))}
-            </div></p>
           </div>
         ) : (
           <form onSubmit={handleLogin}>

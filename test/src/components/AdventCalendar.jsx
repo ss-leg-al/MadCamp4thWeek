@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Door from './Door';
 import Modal from './Modal';
 import './AdventCalendar.css';
-import buildingImage from '../assets/hotel2.png';
+import buildingImage from '../assets/realhotel.png';
 
 const AdventCalendar = ({ refreshTrigger }) => {
   const [messages, setMessages] = useState([]); // 메시지 상태

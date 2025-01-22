@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Train.css';
-import trainImage from '../assets/train.png';
+import trainImage from '../assets/longtrain.png';
 
 const Train = ({ isActive }) => {
   const [animate, setAnimate] = useState(false);

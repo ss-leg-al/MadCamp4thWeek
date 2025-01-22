@@ -7,7 +7,8 @@ const Lobby = ({ onLoginSuccess }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showLogin, setShowLogin] = useState(false);
-  const [dialogue, setDialogue] = useState('안녕하세요, 저는 조성제입니다. 체크인 도와드리겠습니다.');
+  const [dialogue, setDialogue] = useState(`안녕하세요, 저는 조성제입니다.
+    체크인 도와드리겠습니다.`);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,7 +24,8 @@ const Lobby = ({ onLoginSuccess }) => {
       sessionStorage.setItem('messages', JSON.stringify(user.messages));
 
       setShowLogin(false); // 로그인 폼 숨김
-      setDialogue('편안한 숙박 되세요, 필요하신 사항은 언제든 말씀해 주세요.'); // 대사 변경
+      setDialogue(`편안한 숙박 되세요, 
+        필요하신 사항은 언제든 말씀해 주세요.`);
       setTimeout(() => {
         onLoginSuccess(); // 다음 페이지로 전환
       }, 1000); // 3초 뒤에 다음 페이지로 이동
@@ -40,8 +42,12 @@ const Lobby = ({ onLoginSuccess }) => {
     <div className="lobby" onClick={() => setShowLogin(true)}>
       <div className="login-container">
         {!showLogin ? (
-          <div className="dialogue">
-            <p>{dialogue}</p>
+                    <div className="dialogue">
+                        <p><div className="dialogue">
+            {dialogue.split('\n').map((line, index) => (
+                <p key={index}>{line}</p>
+            ))}
+            </div></p>
           </div>
         ) : (
           <form onSubmit={handleLogin}>

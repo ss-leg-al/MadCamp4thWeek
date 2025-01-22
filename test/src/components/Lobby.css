@@ -13,13 +13,13 @@
   
   /* 로그인 박스 컨테이너 */
   .login-container {
-    width: 900px; /* 너비 자동 조정 */
+    width: 800px; /* 너비 자동 조정 */
     height: auto; /* 높이 자동 조정 */
     aspect-ratio: 16 / 9; /* 말풍선의 비율 유지 */
     text-align: center;
     position: absolute;
-    top: 30%; /* 화면 중앙에 배치 */
-    left: 74%;
+    top: 27%; /* 화면 중앙에 배치 */
+    left: 78%;
     transform: translate(-50%, -50%);
     background-image: url('../assets/talkingbox.png'); /* 말풍선 이미지 경로 */
     background-size: contain; /* 이미지 전체 표시 */
@@ -36,27 +36,29 @@
   /* 대사 스타일 */
   .dialogue {
     text-align: center; /* 가운데 정렬 */
-    font-size: 2.5rem; /* 글자 크기 */
+    font-size: 2rem; /* 글자 크기 */
     color: #333; /* 글자 색상 */
     font-weight: bold; /* 강조 */
-    margin-top: 100px;
+    margin-top: 50px;
   }
 
   /* 폼 그룹 */
   .form-group1 {
-    margin-top: 40px;
-    margin-bottom: 24px; /* 여백 유지 */
-    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 10px; /* 여백 유지 */
+    width: 60%;
     max-width: 400px; /* 폼 그룹 너비 증가 */
     text-align: left;
+    margin-left: 18%;
   }
     /* 폼 그룹 */
     .form-group2 {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 24px; /* 여백 유지 */
-    width: 100%;
+    width: 60%;
     max-width: 400px; /* 폼 그룹 너비 증가 */
     text-align: left;
+    margin-left: 18%;
     }
 
   /* 레이블 */
@@ -79,16 +81,21 @@
   
   /* 로그인 버튼 */
   .login-button {
-    width: 30%; /* 버튼 너비를 입력 칸과 동일하게 */
-    max-width: 400px; /* 버튼 너비 증가 */
-    padding: 1rem; /* 높이 증가 */
+    margin-left: 40%;
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 가로 방향 중앙 정렬 */
+    align-items: center; /* 세로 방향 중앙 정렬 */
+    width: 24%; /* 버튼 너비 */
+    height: 12%; /* 버튼 높이 */
+    max-width: 400px; /* 버튼 너비 최대값 */
+    padding: 1rem; /* 버튼 내부 여백 */
     background-color: #a6a6a6;
     color: white;
     border: none;
     border-radius: 6px; /* 모서리 더 둥글게 */
-    font-size: 1.2rem; /* 글자 크기 증가 */
+    font-size: 1rem; /* 글자 크기 증가 */
     font-weight: bold;
-    margin-top: 1px; /* 버튼과 입력 칸 간격 증가 */
+    margin-top: -10px; /* 버튼과 입력 칸 간격 증가 */
     cursor: pointer;
     transition: background-color 0.3s;
   }
@@ -101,7 +108,7 @@
     text-align: center; /* 가운데 정렬 */
     font-size: 1.5rem; /* 글자 크기 */
     color: #333; /* 글자 색상 */
-    margin-top: 70px;
+    margin-top: 95px;
     font-weight: bold; /* 강조 */
   }
   @font-face {

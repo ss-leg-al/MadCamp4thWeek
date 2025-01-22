@@ -91,3 +91,11 @@ body {
       opacity: 0.5;
     }
   }
+  @font-face {
+    font-family: 'LetterFont';
+    src: url('../assets/letter.ttf') format('truetype');
+  }
+  
+  .modal h2, .modal p {
+    font-family: 'LetterFont', sans-serif;
+  }

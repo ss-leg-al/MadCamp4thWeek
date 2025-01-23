@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Modal.css';
 
 const Modal = ({ isOpen, onClose, children }) => {
+  const handleWheel = (e) => {
+    e.stopPropagation(); // 스크롤 이벤트 전파 차단
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -21,6 +25,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.6 }}
             onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
+            onWheel={handleWheel} // 스크롤 이벤트 전파 차단
           >
             <div className="modal-text-content">{children}</div>
             <button onClick={onClose} className="close-button">

@@ -33,36 +33,30 @@ function App() {
       event.preventDefault(); // 이벤트 중복 방지
       return;
     }
-
+  
     // deltaY 임계값 체크
     if (Math.abs(event.deltaY) < deltaThreshold) return;
-
+  
     // 허용된 페이지에서만 스크롤 가능: Home(0), Train(1), AdventCalendar(4), Ending(5)
     if (![0, 1, 4, 5].includes(currentPage)) {
       event.preventDefault();
       return;
     }
-
+  
     setIsScrolling(true);
-
+  
     if (currentPage === 4) {
       if (event.deltaY > 0) {
         // AdventCalendar 페이지에서 아래로 스크롤 시 Ending 페이지로 이동
         setCurrentPage(5);
-      } else {
-        // AdventCalendar 페이지에서 위로 스크롤 시 이전 페이지로 이동
-        if (currentPage > 0) {
-          setCurrentPage((prevPage) => prevPage - 1);
-        }
       }
+      // 위로 스크롤 시 동작 없음 (이전 페이지로 이동 차단)
     } else if (currentPage === 5) {
       if (event.deltaY < 0) {
         // Ending 페이지에서 위로 스크롤 시 AdventCalendar 페이지로 이동
         setCurrentPage(4);
-      } else {
-        // Ending 페이지에서 아래로 스크롤 시 추가 동작 방지
-        // 필요시 다른 로직 추가 가능
       }
+      // 아래로 스크롤 시 추가 동작 방지
     } else {
       if (event.deltaY > 0 && currentPage < 5) {
         // 아래로 스크롤 시 다음 페이지로 이동
@@ -72,10 +66,9 @@ function App() {
         setCurrentPage((prevPage) => prevPage - 1);
       }
     }
-
+  
     setTimeout(() => setIsScrolling(false), 1000); // 애니메이션 시간과 일치
   };
-
   // Zoom 페이지에서 Lobby 페이지로 넘어가는 핸들러
   const handleZoomToLobby = () => {
     setIsTransitioning(true); // 암전 시작

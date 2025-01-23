@@ -38,7 +38,7 @@ const Lobby = ({ onLoginSuccess }) => {
 
       setTimeout(() => {
         onLoginSuccess(); // 다음 페이지로 전환
-      }, 2000);
+      }, 3000);
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);

@@ -5,9 +5,10 @@ import Home from './components/Home';
 import Train from './components/Train';
 import Zoom from './components/Zoom'; // Zoom 컴포넌트 추가
 import Lobby from './components/Lobby'; // Lobby 컴포넌트 추가
+import Ending from './components/Ending'; // Ending 컴포넌트 추가
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(0); // 0: Home, 1: Train, 2: Zoom, 3: Lobby, 4: AdventCalendar
+  const [currentPage, setCurrentPage] = useState(0); // 0: Home, 1: Train, 2: Zoom, 3: Lobby, 4: AdventCalendar, 5: Ending
   const [isScrolling, setIsScrolling] = useState(false); // 스크롤 잠금 상태
   const [refreshTrigger, setRefreshTrigger] = useState(false); // AdventCalendar 새로고침 트리거
   const [isTransitioning, setIsTransitioning] = useState(false); // 암전 효과 상태
@@ -36,19 +37,40 @@ function App() {
     // deltaY 임계값 체크
     if (Math.abs(event.deltaY) < deltaThreshold) return;
 
-    // Zoom 페이지(2번)에서는 스크롤 이벤트를 차단
-    if (currentPage === 2) return;
-    if (currentPage === 3) return;
-    if (currentPage === 4) return;
+    // 허용된 페이지에서만 스크롤 가능: Home(0), Train(1), AdventCalendar(4), Ending(5)
+    if (![0, 1, 4, 5].includes(currentPage)) {
+      event.preventDefault();
+      return;
+    }
 
     setIsScrolling(true);
 
-    if (event.deltaY > 0 && currentPage < 4) {
-      // 아래로 스크롤 시 다음 페이지로 이동
-      setCurrentPage((prevPage) => prevPage + 1);
-    } else if (event.deltaY < 0 && currentPage > 0) {
-      // 위로 스크롤 시 이전 페이지로 이동
-      setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage === 4) {
+      if (event.deltaY > 0) {
+        // AdventCalendar 페이지에서 아래로 스크롤 시 Ending 페이지로 이동
+        setCurrentPage(5);
+      } else {
+        // AdventCalendar 페이지에서 위로 스크롤 시 이전 페이지로 이동
+        if (currentPage > 0) {
+          setCurrentPage((prevPage) => prevPage - 1);
+        }
+      }
+    } else if (currentPage === 5) {
+      if (event.deltaY < 0) {
+        // Ending 페이지에서 위로 스크롤 시 AdventCalendar 페이지로 이동
+        setCurrentPage(4);
+      } else {
+        // Ending 페이지에서 아래로 스크롤 시 추가 동작 방지
+        // 필요시 다른 로직 추가 가능
+      }
+    } else {
+      if (event.deltaY > 0 && currentPage < 5) {
+        // 아래로 스크롤 시 다음 페이지로 이동
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else if (event.deltaY < 0 && currentPage > 0) {
+        // 위로 스크롤 시 이전 페이지로 이동
+        setCurrentPage((prevPage) => prevPage - 1);
+      }
     }
 
     setTimeout(() => setIsScrolling(false), 1000); // 애니메이션 시간과 일치
@@ -97,6 +119,12 @@ function App() {
         style={{ zIndex: currentPage === 4 ? 10 : 0 }}
       >
         <AdventCalendar refreshTrigger={refreshTrigger} />
+      </div>
+      <div
+        className={`page ${currentPage === 5 ? 'visible' : 'hidden'}`}
+        style={{ zIndex: currentPage === 5 ? 10 : 0 }}
+      >
+        <Ending />
       </div>
       {/* 암전 오버레이 */}
       <div className={`transition-overlay ${isTransitioning ? 'visible' : ''}`}></div>

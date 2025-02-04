@@ -21,24 +21,30 @@ The Grand MadCamp Hotel은 영화 *"The Grand Budapest Hotel"* 에서 영감을 
 
 ## 🏗️ Who Created It
 
-<br>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" style="table-layout: fixed; border-collapse: collapse;">
   <tr>
-    <td align="center" width="50%" valign="top">
-      <img src="https://github.com/lovelhee.png" width="150" height="150" /><br /><br />
-      <b>김정희</b><br />
-      부산대학교 20<br /><br />
-      <a href="https://github.com/lovelhee"><img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white"/></a>
+    <td align="center" width="50%" valign="top" style="padding: 20px;">
+      <img src="https://github.com/lovelhee.png" width="200" height="200" /><br /><br />
+      <b style="font-size: 20px;">김정희</b><br />
+      <span style="font-size: 16px;">부산대학교 20</span><br /><br />
+      <a href="https://github.com/lovelhee">
+        <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
     </td>
-    <td align="center" width="50%" valign="top">
-      <img src="https://github.com/ss-leg-al.png" width="150" height="150" /><br /><br />
-      <b>이현서</b><br />
-      고려대학교 21<br /><br />
-      <a href="https://github.com/ss-leg-al"><img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white"/></a>
+    <td align="center" width="50%" valign="top" style="padding: 20px;">
+      <img src="https://github.com/ss-leg-al.png" width="200" height="200" /><br /><br />
+      <b style="font-size: 20px;">이현서</b><br />
+      <span style="font-size: 16px;">고려대학교 21</span><br /><br />
+      <a href="https://github.com/ss-leg-al">
+        <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
     </td>
   </tr>
 </table>
+
+
+
+
 
 <br>
 
